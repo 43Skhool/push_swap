@@ -1,0 +1,8 @@
+{
+    "C_Cpp.default.compilerPath": "D:\\Applications\\MinGW_(C_Complier)\\bin\\g++.exe",
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "push_swap.h": "c",
+        "stack.h": "c"
+    }
+}
