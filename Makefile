@@ -11,7 +11,7 @@ OBJS		= $(SRC:%.c=%.o)
 
 $(NAME): $(OBJS)
 	@${MAKE} -s -C corekit
-	@cc $(OBJS) -lm -L$(COREKIT_PATH) -lcorekit -Iincludes -o $(NAME) -s
+	@cc $(OBJS) -lm -L$(COREKIT_PATH) -lcorekit -Iincludes -o $(NAME) -s -g
 	@echo "$(GREEN)[PUSH_SWAP]:\t PROJECT COMPILED$(RESET)"
 
 all:$(NAME)
@@ -32,10 +32,10 @@ fclean: clean
 re: fclean all
 
 test: all
-	 ./$(NAME) 4 3 -2147483648 23 4 5 6 2147483647
+	 ./$(NAME) 4 
 
 val: all
-	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) "4 3 -2147483648 23 23 4 5 6 2147483648"
+	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) "   9   "
 
 GREEN=\033[0;32m
 RED=\033[0;31m
