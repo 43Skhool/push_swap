@@ -1,3 +1,4 @@
 *.o
+*/*.o
 *.a
 push_swap
