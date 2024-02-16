@@ -3,7 +3,9 @@ NAME		= push_swap
 COREKIT_PATH = ./corekit
 
 SRC = main.c \
-	src/stack_loading.c
+	src/stack_loading.c \
+	src/sorting.c \
+	src/utils.c
 
 FLAGS		= -Wall -Werror -Wextra -g
 
