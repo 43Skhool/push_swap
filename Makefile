@@ -11,8 +11,10 @@ OBJS		= $(SRC:%.c=%.o)
 
 $(NAME): $(OBJS)
 	@${MAKE} -s -C corekit
-	@cc $(OBJS) -lm -L$(COREKIT_PATH) -lcorekit -Iincludes -o $(NAME) -s -g
+	@cc $(OBJS) -lm -L$(COREKIT_PATH) -lcorekit -Iincludes -o $(NAME) -g
 	@echo "$(GREEN)[PUSH_SWAP]:\t PROJECT COMPILED$(RESET)"
+
+#TO DO mettere le flag
 
 all:$(NAME)
 
@@ -35,7 +37,7 @@ test: all
 	 ./$(NAME) 4 
 
 val: all
-	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) "   9   "
+	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 3
 
 GREEN=\033[0;32m
 RED=\033[0;31m

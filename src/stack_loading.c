@@ -23,7 +23,9 @@ t_stack	*load_stack(int argc, char **argv)
 	long	tmp_number;
 
 	stack = NULL;
+	//argv_splitted = NULL;
 	argv_splitted = take_arguments(argc, argv, &i);
+	//ft_print_char_matrix(argv_splitted);
 	while (argv_splitted[i])
 	{
 		if (ft_is_string_numeric(argv_splitted[i]) == false)
@@ -44,13 +46,23 @@ t_stack	*load_stack(int argc, char **argv)
 //i ij just for norminette
 char	**take_arguments(int argc, char **argv, int *i)
 {
+	char	**result;
+
+	if (argc == 1)
+		error(argc, argv, NULL);
 	if (argc == 2)
 	{
 		*i = 0;
-		return (ft_split(argv[1], ' '));
+		result = ft_split(argv[1], ' ');
+		if (ft_count_matrix_row((void **)result) == 0)
+			error(argc, result, NULL);
 	}
-	*i = 1;
-	return (argv);
+	else
+	{
+		*i = 1;
+		result = argv;
+	}
+	return (result);
 }
 
 t_bool	double_check_number(int number, char *str_number)
