@@ -23,9 +23,7 @@ t_stack	*load_stack(int argc, char **argv)
 	long	tmp_number;
 
 	stack = NULL;
-	//argv_splitted = NULL;
 	argv_splitted = take_arguments(argc, argv, &i);
-	//ft_print_char_matrix(argv_splitted);
 	while (argv_splitted[i])
 	{
 		if (ft_is_string_numeric(argv_splitted[i]) == false)
@@ -43,7 +41,7 @@ t_stack	*load_stack(int argc, char **argv)
 	return (stack);
 }
 
-//i ij just for norminette
+//i is just for norminette
 char	**take_arguments(int argc, char **argv, int *i)
 {
 	char	**result;
