@@ -5,7 +5,7 @@
 # include <stdlib.h>
 # include "corekit.h"
 
-t_stack	*load_stack(int argc, char **argv);
+t_stack	*load_stack(int argc, char **argv, t_stack *stack);
 
 t_stack	*sort_stack(t_stack *stack);
 

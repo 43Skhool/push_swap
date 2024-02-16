@@ -15,14 +15,13 @@ char	**take_arguments(int argc, char **argv, int *i);
 // Prendi il numero (atoi)
 // Fai la riprova (itoa)
 //	->errore
-t_stack	*load_stack(int argc, char **argv)
+t_stack	*load_stack(int argc, char **argv, t_stack *stack)
 {
-	t_stack	*stack;
 	int		i;
 	char	**argv_splitted;
 	long	tmp_number;
 
-	stack = NULL;
+	stack = ft_initialize_stack(stack);
 	argv_splitted = take_arguments(argc, argv, &i);
 	while (argv_splitted[i])
 	{
