@@ -32,7 +32,7 @@ t_stack	*load_stack(int argc, char **argv, t_stack *stack)
 			error(argc, argv_splitted, stack);
 		if (ft_stack_contains(stack, tmp_number) == true)
 			error(argc, argv_splitted, stack);
-		stack = ft_push(stack, tmp_number);
+		ft_push(stack, tmp_number);
 		i++;
 	}
 	if (argc == 2)
