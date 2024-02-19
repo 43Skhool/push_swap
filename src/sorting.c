@@ -35,11 +35,15 @@ t_stack	*sort_stack(t_stack *stack)
 
 void	push_to(t_stack *main, t_stack *temp)
 {
+	if (ft_is_stack_empty(main))
+		return;
 	ft_push(temp, ft_pop(main));
 }
 
 void	swap(t_stack *a)
 {
+	if (ft_is_stack_empty(a) || a->length < 2)
+		return;
 	int	temp;
 	temp = a->head->value;
 	a->head->value = a->head->next->value;
@@ -48,5 +52,14 @@ void	swap(t_stack *a)
 
 void reverse_rotation(t_stack *a)
 {
-	cd
+	if (ft_is_stack_empty(a) || a->length < 2)
+		return;
+	ft_queue(a, ft_pop(a));
+}
+
+void rotation(t_stack *a)
+{
+	if (ft_is_stack_empty(a) || a->length < 2)
+		return;
+	ft_push(a, ft_pop_tail(a));
 }
