@@ -33,7 +33,20 @@ t_stack	*sort_stack(t_stack *stack)
 	return (stack);
 }
 
-void	switch_top(t_stack *main, t_stack *temp)
+void	push_to(t_stack *main, t_stack *temp)
 {
 	ft_push(temp, ft_pop(main));
+}
+
+void	swap(t_stack *a)
+{
+	int	temp;
+	temp = a->head->value;
+	a->head->value = a->head->next->value;
+	a->head->next->value = temp;
+}
+
+void reverse_rotation(t_stack *a)
+{
+	cd
 }
