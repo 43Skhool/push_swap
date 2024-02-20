@@ -39,7 +39,7 @@ test: all
 	 ./$(NAME) 4 
 
 val: all
-	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 3 4 5 6
+	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) " "
 
 GREEN=\033[0;32m
 RED=\033[0;31m

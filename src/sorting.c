@@ -1,6 +1,10 @@
 
 #include "push_swap.h"
 
+void	push_to(t_stack *stack_1, t_stack *stack_2, char *str);
+void	swap(t_stack *a);
+void	rotation(t_stack *a);
+void	reverse_rotation(t_stack *a);
 void	switch_top(t_stack *main, t_stack *temp);
 
 t_stack	*sort_stack(t_stack *stack)
@@ -10,34 +14,40 @@ t_stack	*sort_stack(t_stack *stack)
 
 	temp_stack = ft_initialize_stack(temp_stack);
 
-	//FIRST CALL
-	temp_value = ft_pop(stack);
-	ft_push(temp_stack, temp_value);
+	//FIRST CALL, switch the top values
+	push_to(stack, temp_stack, "pb");
 
-	print_stacks(stack, temp_stack);
+	while (stack->length > 0)
+	{
+		temp_value = ft_pop(stack);
+	
+		while (temp_stack->head != NULL)
+		{
+			if (temp_value < temp_stack->head->value)
+				push_to(temp_stack, stack, "pa");
+			else
+				break;
+		}
 
-	// //switch_top(stack, temp_stack);
-	// print_stacks(stack, temp_stack);
+		ft_push(temp_stack, temp_value);
+		ft_printf("pb\n");
+	}
 
-	// while (!stack)
-	// {
-	// 	if (stack->value < temp_stack->value)
-	// 	{
-	// 		switch_top(stack, temp_stack);
-	// 	}
-	// }
-	//ft_display_stack(stack);
-
+	while (temp_stack->length > 0)
+		push_to(temp_stack, stack, "pa");
+	
 	ft_free_stack(temp_stack);
 
 	return (stack);
 }
 
-void	push_to(t_stack *main, t_stack *temp)
+//str => if stack_1 == a => pb else pa
+void	push_to(t_stack *stack_1, t_stack *stack_2, char *str)
 {
-	if (ft_is_stack_empty(main))
+	if (ft_is_stack_empty(stack_1))
 		return;
-	ft_push(temp, ft_pop(main));
+	stack_1 = ft_push(stack_2, ft_pop(stack_1));
+	ft_printf("%s\n", str);
 }
 
 void	swap(t_stack *a)
@@ -50,16 +60,16 @@ void	swap(t_stack *a)
 	a->head->next->value = temp;
 }
 
-void reverse_rotation(t_stack *a)
+void	reverse_rotation(t_stack *a)
 {
 	if (ft_is_stack_empty(a) || a->length < 2)
 		return;
-	ft_queue(a, ft_pop(a));
+	a = ft_queue(a, ft_pop(a));
 }
 
-void rotation(t_stack *a)
+void	rotation(t_stack *a)
 {
 	if (ft_is_stack_empty(a) || a->length < 2)
 		return;
-	ft_push(a, ft_pop_tail(a));
+	a = ft_push(a, ft_pop_tail(a));
 }

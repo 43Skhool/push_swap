@@ -2,7 +2,7 @@
 
 t_bool	double_check_number(int number, char *str_number);
 void	error(int argc, char **argv, t_stack *stack);
-char	**take_arguments(int argc, char **argv, int *i);
+char	**take_arguments(int argc, char **argv, int *i, t_stack *stack);
 
 // tmp_number è long per eviatare soliti problemi con il minimo intero
 // Se argc = 2
@@ -22,7 +22,7 @@ t_stack	*load_stack(int argc, char **argv, t_stack *stack)
 	long	tmp_number;
 
 	stack = ft_initialize_stack(stack);
-	argv_splitted = take_arguments(argc, argv, &i);
+	argv_splitted = take_arguments(argc, argv, &i, stack);
 	while (argv_splitted[i])
 	{
 		if (ft_is_string_numeric(argv_splitted[i]) == false)
@@ -41,7 +41,7 @@ t_stack	*load_stack(int argc, char **argv, t_stack *stack)
 }
 
 //i is just for norminette
-char	**take_arguments(int argc, char **argv, int *i)
+char	**take_arguments(int argc, char **argv, int *i, t_stack *stack)
 {
 	char	**result;
 
@@ -52,7 +52,7 @@ char	**take_arguments(int argc, char **argv, int *i)
 		*i = 0;
 		result = ft_split(argv[1], ' ');
 		if (ft_count_matrix_row((void **)result) == 0)
-			error(argc, result, NULL);
+			error(argc, result, stack);
 	}
 	else
 	{
@@ -84,6 +84,6 @@ void	error(int argc, char **argv, t_stack *stack)
 	if (argc == 2)
 		ft_free_matrix((void **)argv);
 	ft_free_stack(stack);
-	ft_printf("Error in parameters\n");
+	ft_putstr_fd("Error\n", STDERR_FILENO);
 	exit(0);
 }
