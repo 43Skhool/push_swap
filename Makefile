@@ -36,7 +36,7 @@ fclean: clean
 re: fclean all
 
 test: all
-	 ./$(NAME) 9 8 3 1
+	 ./$(NAME) 10 9 8 7 6 5 4 3 2 1
 
 val: all
 	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 78 48

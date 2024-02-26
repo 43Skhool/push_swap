@@ -30,7 +30,7 @@ t_stack	*load_stack(int argc, char **argv, t_stack *stack)
 		tmp_number = ft_atoi(argv_splitted[i]);
 		if (double_check_number(tmp_number, argv_splitted[i]) == false)
 			error(argc, argv_splitted, stack);
-		if (ft_stack_contains(stack, tmp_number) == true)
+		if (ft_stack_contains(stack, tmp_number))
 			error(argc, argv_splitted, stack);
 		ft_push(stack, tmp_number);
 		i++;
