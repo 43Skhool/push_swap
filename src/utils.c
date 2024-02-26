@@ -6,7 +6,7 @@
 /*   By: lebartol <lebartol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:24:25 by lebartol          #+#    #+#             */
-/*   Updated: 2024/02/26 16:04:31 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:06:49 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ int	get_selection_cost(t_stack *stack, t_stack_node *node)
 
 int	get_insertion_cost(void)
 {
+
 	return (0);
 }
 
-//the core of the project lies in this function so im going to break it
 //down as mush as possible to make it less of a debugging pain
 //it should account for it's position in the stack
 // (the cost is basically how far it is from the middle)
