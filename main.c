@@ -23,13 +23,8 @@ void	display_stacks(t_stack *a, t_stack *b)
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
-	t_stack	*b;
 
 	a = load_stack(argc, argv, a);
-	b = ft_initialize_stack(b);
-	reverse_rotation(a);
-	reverse_rotation(b);
-	display_stacks(a, b);
-	ft_free_stack(a);
-	ft_free_stack(b);
+	ft_display_stack(a);
+	ft_printf("\n%i", is_stack_ordered(a));
 }

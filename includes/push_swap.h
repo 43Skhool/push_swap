@@ -31,4 +31,6 @@ void	reverse_rotation(t_stack *a);
 
 void	rotation(t_stack *a);
 
+t_bool	is_stack_ordered(t_stack *stack);
+
 #endif
