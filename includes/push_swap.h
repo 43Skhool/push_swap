@@ -23,6 +23,4 @@ t_stack	*sort_stack(t_stack *stack);
 
 void	print_stacks(t_stack *main, t_stack *temp);
 
-void	push_to_bottom(t_stack *main, int new_value);
-
 #endif

@@ -18,12 +18,10 @@ int	main(int argc, char **argv)
 
 	stack = load_stack(argc, argv, stack);
 	ft_display_stack(stack);
-	ft_push(stack, 1);
-	ft_push(stack, 2);
-	ft_push(stack, 3);
 	ft_printf("\n");
-	push_to_bottom(stack, 5);
-	//ft_pop_tail(stack);
+	ft_pop(stack);
+	ft_push_tail(stack, 5);
+	ft_push_tail(stack, 6);
 	ft_display_stack(stack);
 	// stack = sort_stack(stack);
 	ft_free_stack(stack);
