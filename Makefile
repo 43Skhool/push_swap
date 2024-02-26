@@ -36,10 +36,10 @@ fclean: clean
 re: fclean all
 
 test: all
-	 ./$(NAME) 4 
+	 ./$(NAME) 1 2 3 4 5 6 7 8 9 10
 
 val: all
-	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 78 48 
+	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 78 48
 
 GREEN=\033[0;32m
 RED=\033[0;31m

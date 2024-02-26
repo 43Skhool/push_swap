@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorting.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebartol <lebartol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/26 12:41:41 by lebartol          #+#    #+#             */
+/*   Updated: 2024/02/26 12:41:45 by lebartol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_to(t_stack *stack_1, t_stack *stack_2, char *str);
+void	push_to(t_stack *stack_1, t_stack *stack_2);
 void	swap(t_stack *a);
 void	rotation(t_stack *a);
 void	reverse_rotation(t_stack *a);
@@ -13,14 +24,14 @@ t_stack	*sort_stack(t_stack *stack)
 	int		temp_value;
 
 	temp_stack = ft_initialize_stack(temp_stack);
-	push_to(stack, temp_stack, "pb");
+	push_to(stack, temp_stack);
 	while (stack->length > 0)
 	{
 		temp_value = ft_pop(stack);
 		while (temp_stack->head != NULL)
 		{
 			if (temp_value < temp_stack->head->value)
-				push_to(temp_stack, stack, "pa");
+				push_to(temp_stack, stack);
 			else
 				break ;
 		}
@@ -28,18 +39,17 @@ t_stack	*sort_stack(t_stack *stack)
 		ft_printf("pb\n");
 	}
 	while (temp_stack->length > 0)
-		push_to(temp_stack, stack, "pa");
+		push_to(temp_stack, stack);
 	ft_free_stack(temp_stack);
 	return (stack);
 }
 
 //str => if stack_1 == a => pb else pa
-void	push_to(t_stack *stack_1, t_stack *stack_2, char *str)
+void	push_to(t_stack *stack_1, t_stack *stack_2)
 {
 	if (ft_is_stack_empty(stack_1))
 		return ;
 	stack_1 = ft_push(stack_2, ft_pop(stack_1));
-	ft_printf("%s\n", str);
 }
 
 void	swap(t_stack *a)

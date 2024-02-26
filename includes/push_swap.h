@@ -23,4 +23,12 @@ t_stack	*sort_stack(t_stack *stack);
 
 void	print_stacks(t_stack *main, t_stack *temp);
 
+void	push_to(t_stack *stack_1, t_stack *stack_2);
+
+void	swap(t_stack *a);
+
+void	reverse_rotation(t_stack *a);
+
+void	rotation(t_stack *a);
+
 #endif

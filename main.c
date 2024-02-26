@@ -12,17 +12,24 @@
 
 #include "push_swap.h"
 
+void	display_stacks(t_stack *a, t_stack *b)
+{
+	ft_display_stack(a);
+	ft_printf("^a\n");
+	ft_display_stack(b);
+	ft_printf("^b\n");
+}
+
 int	main(int argc, char **argv)
 {
-	t_stack	*stack;
+	t_stack	*a;
+	t_stack	*b;
 
-	stack = load_stack(argc, argv, stack);
-	ft_display_stack(stack);
-	ft_printf("\n");
-	ft_pop(stack);
-	ft_push_tail(stack, 5);
-	ft_push_tail(stack, 6);
-	ft_display_stack(stack);
-	// stack = sort_stack(stack);
-	ft_free_stack(stack);
+	a = load_stack(argc, argv, a);
+	b = ft_initialize_stack(b);
+	reverse_rotation(a);
+	reverse_rotation(b);
+	display_stacks(a, b);
+	ft_free_stack(a);
+	ft_free_stack(b);
 }
