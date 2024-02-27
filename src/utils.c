@@ -6,7 +6,7 @@
 /*   By: lebartol <lebartol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:24:25 by lebartol          #+#    #+#             */
-/*   Updated: 2024/02/26 17:06:49 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:33:27 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ int	get_selection_cost(t_stack *stack, t_stack_node *node)
 	return (position);
 }
 
-int	get_insertion_cost(void)
+int	get_insertion_cost(t_stack *b, int value)
 {
-
-	return (0);
+	//get target, calculate selection cost and add 1
 }
 
 //down as mush as possible to make it less of a debugging pain
@@ -87,7 +86,7 @@ int	get_insertion_cost(void)
 //  dependent on how far the desired position
 //  (the two nodes that encapsulate it) is from the middle
 // the logic is from the sorting algo
-int	get_sorting_cost(t_stack *a, t_stack_node *node)
+int	get_sorting_cost(t_stack *a, t_stack_node *node, t_stack *b)
 {
-	return (get_insertion_cost() + get_selection_cost(a, node));
+	return (get_insertion_cost(b, node->value) + get_selection_cost(a, node));
 }

@@ -27,8 +27,9 @@ int	main(int argc, char **argv)
 
 	a = load_stack(argc, argv, a);
 	b = ft_initialize_stack(b);
+	ft_push(b, 5);
 	display_stacks(a, b);
-	ft_printf("mosse per spostare %d: %d\n", ft_stack_contains(a, 7)->value, get_sorting_cost(a, ft_stack_contains(a, 7)));
+	ft_printf("number of moves to insert %d:%d", 5, get_sorting_cost(b, b->head, a));
 	ft_free_stack(a);
 	ft_free_stack(b);
 }
