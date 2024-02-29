@@ -23,8 +23,13 @@ void	display_stacks(t_stack *a, t_stack *b)
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
+	t_stack	*b;
 
 	a = load_stack(argc, argv, a);
-	ft_display_stack(a);
-	ft_printf("\n%i", is_stack_ordered(a));
+	b = ft_initialize_stack(b);
+	ft_push(b, 5);
+	display_stacks(a, b);
+	ft_printf("number of moves to insert %d:%d", 5, get_sorting_cost(b, b->head, a));
+	ft_free_stack(a);
+	ft_free_stack(b);
 }
