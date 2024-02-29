@@ -6,7 +6,7 @@
 /*   By: maceccar <maceccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:24:25 by lebartol          #+#    #+#             */
-/*   Updated: 2024/02/26 15:25:48 by maceccar         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:53:03 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_bool	is_stack_ordered(t_stack *stack)
 		if (temp_node->prev)
 		{
 			if (temp_node->prev->value > temp_node->value)
-				return (false);	
+				return (false);
 		}
 		temp_node = temp_node->next;
 	}

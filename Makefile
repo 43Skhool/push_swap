@@ -41,6 +41,9 @@ test: all
 val: all
 	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 78 48
 
+normi:
+	norminette $(SRC)
+
 GREEN=\033[0;32m
 RED=\033[0;31m
 BLUE=\033[0;34m
