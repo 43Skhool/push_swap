@@ -6,11 +6,23 @@
 /*   By: lebartol <lebartol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:24:25 by lebartol          #+#    #+#             */
-/*   Updated: 2024/02/27 16:33:27 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:53:33 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_sort_three(t_stack *stack)
+{
+	if (is_stack_ordered(stack))
+		return ;
+	if (stack->head->value > stack->head->next->value)
+		swap(stack);
+	if (stack->head->value > stack->head->next->next->value)
+		reverse_rotation(stack);
+	if (stack->head->value > stack->head->next->value)
+		swap(stack);
+}
 
 void	print_stacks(t_stack *main, t_stack *temp)
 {
@@ -39,7 +51,6 @@ t_bool	is_stack_ordered(t_stack *stack)
 	return (true);
 }
 
-//gets the position, first value is 0
 int	get_position(t_stack *stack, t_stack_node *node)
 {
 	int				i;
@@ -57,12 +68,6 @@ int	get_position(t_stack *stack, t_stack_node *node)
 	return (0);
 }
 
-//visto che possiamo inserire soltanto il primo elemento
-//nell'altro stack dobbiamo cercare il modo di portarcelo
-//non metto il controllo che il nodo sia effettivamente nello stack
-// se la dimensione e' <2
-//potrebbe essere necessario cambiare il tipo di dato in futuro
-// visto che le mosse potrebbero essere <MAX_INT
 int	get_selection_cost(t_stack *stack, t_stack_node *node)
 {
 	int	position;
@@ -73,20 +78,26 @@ int	get_selection_cost(t_stack *stack, t_stack_node *node)
 	return (position);
 }
 
-int	get_insertion_cost(t_stack *b, int value)
+int	get_insertion_cost(t_stack *stack, int value)
 {
-	//get target, calculate selection cost and add 1
+	
 }
 
-//down as mush as possible to make it less of a debugging pain
-//it should account for it's position in the stack
-// (the cost is basically how far it is from the middle)
-//it should account for it's desired position in the other stack
-//  the cost is again mostly
-//  dependent on how far the desired position
-//  (the two nodes that encapsulate it) is from the middle
-// the logic is from the sorting algo
-int	get_sorting_cost(t_stack *a, t_stack_node *node, t_stack *b)
+t_stack	*get_sorting_costs(t_stack *a,t_stack *b)
 {
-	return (get_insertion_cost(b, node->value) + get_selection_cost(a, node));
+	int			i;
+	int			cost;
+	t_stack		*temp;
+	t_stack_node *node;
+
+	i = 0;
+
+	node = a->head;
+	temp = ft_initialize_stack(temp);
+	while (i < b->length)
+	{
+		cost = get_selection_cost(a, node) + abs(get_insertion_cost(b, node));
+		ft_push_tail(temp, ft_create_node(cost));
+		i++;
+	}
 }

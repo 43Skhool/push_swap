@@ -1,9 +1,11 @@
 {
     "C_Cpp.default.compilerPath": "D:\\Applications\\MinGW_(C_Complier)\\bin\\gcc.exe",
     "files.associations": {
-        "*.embeddedhtml": "html",
-        "push_swap.h": "c",
-        "stack.h": "c"
-    },
+		"*.embeddedhtml": "html",
+		"push_swap.h": "c",
+		"stack.h": "c",
+		"type_traits": "c",
+		"stdlib.h": "c"
+	},
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
 }

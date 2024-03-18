@@ -13,7 +13,7 @@ OBJS		= $(SRC:%.c=%.o)
 
 $(NAME): $(OBJS)
 	@${MAKE} -s -C corekit
-	@cc $(OBJS) -lm -L$(COREKIT_PATH) -lcorekit -Iincludes -o $(NAME) -g
+	gcc $(OBJS) -lm -L$(COREKIT_PATH) -lcorekit -Iincludes -o $(NAME)
 	@echo "$(GREEN)[PUSH_SWAP]:\t PROJECT COMPILED$(RESET)"
 
 #TO DO mettere le flag
@@ -36,10 +36,10 @@ fclean: clean
 re: fclean all
 
 test: all
-	 ./$(NAME) 6 7 8 9 10 1 2 3 4
+	 ./$(NAME) 3 1 2
 
 val: all
-	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 78 48
+	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 3 1 2
 
 GREEN=\033[0;32m
 RED=\033[0;31m

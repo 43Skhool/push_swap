@@ -6,7 +6,7 @@
 /*   By: lebartol <lebartol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:41:41 by lebartol          #+#    #+#             */
-/*   Updated: 2024/02/26 12:41:45 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:20:20 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,55 @@ void	rotation(t_stack *a);
 void	reverse_rotation(t_stack *a);
 void	switch_top(t_stack *main, t_stack *temp);
 
-t_stack	*sort_stack(t_stack *stack)
+void	sort(t_stack *a, t_stack *b)
 {
-	t_stack	*temp_stack;
-	int		temp_value;
+	int		move;
+	t_stack	*cost_a;
+	t_stack	*cost_b;
 
-	temp_stack = ft_initialize_stack(temp_stack);
-	push_to(stack, temp_stack);
-	while (stack->length > 0)
+	while (b->length > 0)
 	{
-		temp_value = ft_pop(stack);
-		while (temp_stack->head != NULL)
-		{
-			if (temp_value < temp_stack->head->value)
-				push_to(temp_stack, stack);
-			else
-				break ;
-		}
-		ft_push(temp_stack, temp_value);
-		ft_printf("pb\n");
+		ft_get_sorting_costs(a, b, cost_a, cost_b);
+		ft_execute_best_move(cost_a, cost_b);
 	}
-	while (temp_stack->length > 0)
-		push_to(temp_stack, stack);
-	ft_free_stack(temp_stack);
-	return (stack);
+}
+
+void	ft_sort_stack(t_stack *a, t_stack *b)
+{
+	if (a->length <= 3)
+		sort_3(a);
+	else if (a->length == 5)
+		sort_5(a, b);
+	else
+	{
+		while (a->length > 3)
+			push_to(a, b);
+		sort_3(a);
+		sort(a, b);
+	}
+
+	// t_stack	*temp_stack;
+	// int		temp_value;
+
+	// temp_stack = ft_initialize_stack(temp_stack);
+	// push_to(stack, temp_stack);
+	// while (stack->length > 0)
+	// {
+	// 	temp_value = ft_pop(stack);
+	// 	while (temp_stack->head != NULL)
+	// 	{
+	// 		if (temp_value < temp_stack->head->value)
+	// 			push_to(temp_stack, stack);
+	// 		else
+	// 			break ;
+	// 	}
+	// 	ft_push(temp_stack, temp_value);
+	// 	ft_printf("pb\n");
+	// }
+	// while (temp_stack->length > 0)
+	// 	push_to(temp_stack, stack);
+	// ft_free_stack(temp_stack);
+	// return (stack);
 }
 
 //str => if stack_1 == a => pb else pa

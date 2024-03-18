@@ -19,7 +19,9 @@
 
 t_stack	*load_stack(int argc, char **argv, t_stack *stack);
 
-t_stack	*sort_stack(t_stack *stack);
+void	ft_sort_stack(t_stack *a, t_stack *b);
+
+void	ft_sort_three(t_stack *stack);
 
 void	print_stacks(t_stack *main, t_stack *temp);
 
@@ -32,7 +34,5 @@ void	reverse_rotation(t_stack *a);
 void	rotation(t_stack *a);
 
 t_bool	is_stack_ordered(t_stack *stack);
-
-int		get_sorting_cost(t_stack *a, t_stack_node *node, t_stack *b);
 
 #endif
