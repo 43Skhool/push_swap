@@ -7,13 +7,13 @@ SRC = main.c \
 	src/sorting.c \
 	src/utils.c
 
-FLAGS		= -Wall -Werror -Wextra -g
+FLAGS		= -Wall -Werror -Wextra -g -s
 
 OBJS		= $(SRC:%.c=%.o)
 
 $(NAME): $(OBJS)
 	@${MAKE} -s -C corekit
-	gcc $(OBJS) -lm -L$(COREKIT_PATH) -lcorekit -Iincludes -o $(NAME)
+	cc $(FLAGS) $(OBJS) -lm -L$(COREKIT_PATH) -lcorekit -Iincludes -o $(NAME)
 	@echo "$(GREEN)[PUSH_SWAP]:\t PROJECT COMPILED$(RESET)"
 
 #TO DO mettere le flag
@@ -36,10 +36,10 @@ fclean: clean
 re: fclean all
 
 test: all
-	 ./$(NAME) 1 2 4 5 6 7 8 9 10 12 14 15 17 89 81 
+	 ./$(NAME) 2 1 3
 
 val: all
-	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 3 1 2
+	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 1 2 3 4 5 -1 -2 -3 0 111
 
 normi:
 	norminette $(SRC)

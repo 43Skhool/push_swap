@@ -6,7 +6,7 @@
 /*   By: lebartol <lebartol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:24:25 by lebartol          #+#    #+#             */
-/*   Updated: 2024/03/19 16:00:53 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:44:35 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ void	ft_sort_three(t_stack *stack)
 {
 	if (is_stack_ordered(stack))
 		return ;
-	if (stack->head->value > stack->head->next->value)
-		swap(stack);
-	if (stack->head->value > stack->head->next->next->value)
+	if (stack->head->value == max_value(stack))
+	{
 		reverse_rotation(stack);
-	if (stack->head->value > stack->head->next->value)
-		swap(stack);
+		if (stack->head->value > stack->head->next->value)
+			swap(stack);
+	}
+	if (stack->head->value < stack->head->next)
 }
 
 void	print_stacks(t_stack *main, t_stack *temp)
@@ -79,17 +80,31 @@ int	get_position(t_stack *stack, t_stack_node *node)
 int	get_insertion_cost(t_stack *b, int value)
 {
 	int	cost;
-	int position;
+	int	position;
 
 	position = get_position(b, ft_stack_contains(b, value));
-	if (position > b->length/2)
-		cost = -(b->length - position)
+	if (position > b->length / 2)
+		cost = -(b->length - position);
 	else
 		cost = position;
-	cost = 0;
-	//get target, calculate selection cost and add 1
+	return (cost);
 }
 
+int	max_value(t_stack *stack)
+{
+	int max;
+	t_stack_node *node;
+
+	node = stack->head;
+	max = stack->head->value;
+	while (node->next != NULL)
+	{
+		if (max < node->value)
+			max = node->value;
+		node = node->next;
+	}
+	return (max);
+}
 //down as mush as possible to make it less of a debugging pain
 //it should account for it's position in the stack
 // (the cost is basically how far it is from the middle)
@@ -98,18 +113,29 @@ int	get_insertion_cost(t_stack *b, int value)
 //  dependent on how far the desired position
 //  (the two nodes that encapsulate it) is from the middle
 // the logic is from the sorting algo
-int	get_selection_cost(t_stack *a, t_stack_node *node, t_stack *b)
+// should add max and min in struct for easier handling
+int	get_selection_cost(t_stack *a, t_stack_node *node)
 {
-	int cost;
+	int				target;
 
-	cost = 0;
-	get_position();
+	target = greatest_smaller_than(a, node->value);
+	if (target == node->value)
+		target = max_value(a);
+	return (get_insertion_cost(a, target));
 }
 
-get_sorting_costs(t_stack *a, t_stack *b, t_stack *cost_a, t_stack *cost_b)
+void	get_sorting_costs(t_stack *a, t_stack *b, t_stack *cost_a, t_stack *cost_b)
 {
 	int cost;
-	while ()
+	t_stack_node *node;
+
+	node = b->head;
+	while (node->next != NULL)
+	{
+		ft_push_tail(cost_a, get_selection_cost(a, node->value));
+		ft_push_tail(cost_b, get_insertion_cost(b, node->value));
+		node = node->next;
+	}
 }
 
 //value should not be present

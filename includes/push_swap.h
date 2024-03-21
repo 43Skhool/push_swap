@@ -35,4 +35,10 @@ void	rotation(t_stack *a);
 
 t_bool	is_stack_ordered(t_stack *stack);
 
+void	get_sorting_costs(t_stack *a, t_stack *b, t_stack *cost_a, t_stack *cost_b);
+
+int	get_selection_cost(t_stack *a, t_stack_node *node);
+
+void	display_stacks(t_stack *a, t_stack *b);
+
 #endif
