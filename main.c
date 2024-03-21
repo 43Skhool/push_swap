@@ -12,7 +12,6 @@
 
 #include "push_swap.h"
 
-
 void	display_stacks(t_stack *a, t_stack *b)
 {
 	ft_display_stack(a);
@@ -28,8 +27,7 @@ int	main(int argc, char **argv)
 
 	a = load_stack(argc, argv, a);
 	b = ft_initialize_stack(b);
-	ft_sort_stack(a, b);
-	display_stacks(a, b);
+	printf("%d", greatest_smaller_than(a, 2));
 	ft_free_stack(a);
 	ft_free_stack(b);
 }

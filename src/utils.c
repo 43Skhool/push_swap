@@ -6,7 +6,7 @@
 /*   By: lebartol <lebartol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:24:25 by lebartol          #+#    #+#             */
-/*   Updated: 2024/03/18 17:25:09 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:00:53 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,18 @@ int	get_position(t_stack *stack, t_stack_node *node)
 // se la dimensione e' <2
 //potrebbe essere necessario cambiare il tipo di dato in futuro
 // visto che le mosse potrebbero essere <MAX_INT
-int	get_selection_cost(t_stack *stack, t_stack_node *node)
-{
-	int	position;
-
-	position = get_position(stack, node);
-	if (position >= stack->length / 2)
-		position = stack->length - position;
-	return (position);
-}
 
 int	get_insertion_cost(t_stack *b, int value)
 {
+	int	cost;
+	int position;
+
+	position = get_position(b, ft_stack_contains(b, value));
+	if (position > b->length/2)
+		cost = -(b->length - position)
+	else
+		cost = position;
+	cost = 0;
 	//get target, calculate selection cost and add 1
 }
 
@@ -98,7 +98,33 @@ int	get_insertion_cost(t_stack *b, int value)
 //  dependent on how far the desired position
 //  (the two nodes that encapsulate it) is from the middle
 // the logic is from the sorting algo
-int	get_sorting_cost(t_stack *a, t_stack_node *node, t_stack *b)
+int	get_selection_cost(t_stack *a, t_stack_node *node, t_stack *b)
 {
-	return (get_insertion_cost(b, node->value) + get_selection_cost(a, node));
+	int cost;
+
+	cost = 0;
+	get_position();
+}
+
+get_sorting_costs(t_stack *a, t_stack *b, t_stack *cost_a, t_stack *cost_b)
+{
+	int cost;
+	while ()
+}
+
+//value should not be present
+int	greatest_smaller_than(t_stack *stack, int value)
+{
+	t_stack_node	*cursor;
+	int				target;
+
+	target = value;
+	cursor = stack->head;
+	while (cursor->next != NULL)
+	{
+		if (cursor->value < value && (value == target || cursor->value > target))
+			target = cursor->value;
+		cursor = cursor->next;
+	}
+	return (target);
 }
