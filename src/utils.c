@@ -14,24 +14,41 @@
 
 void	ft_sort_three(t_stack *stack)
 {
+	t_stack_node *n;
+
 	if (is_stack_ordered(stack))
 		return ;
-	if (stack->head->value == max_value(stack))
+	n = stack->head;
+	if (n->value < n->next->value)
 	{
-		reverse_rotation(stack);
-		if (stack->head->value > stack->head->next->value)
-			swap(stack);
+		rotation(stack);
+		if (is_stack_ordered(stack))
+			return ;
 	}
-	if (stack->head->value < stack->head->next)
+	if (n->value > n->next->value)
+	{
+		if (n->value > n->next->next->value)
+			reverse_rotation(stack);
+		if (is_stack_ordered(stack))
+			return ;
+	}
+	swap(stack);
 }
-
-void	print_stacks(t_stack *main, t_stack *temp)
+//this is bad. 
+int	greatest_smaller_than(t_stack *stack, int value)
 {
-	ft_printf("\nMAIN STACK\n");
-	ft_display_stack(main);
-	ft_printf("\n\nTEMP STACK\n");
-	ft_display_stack(temp);
-	ft_printf("\n");
+	t_stack_node	*cursor;
+	int				target;
+
+	target = value;
+	cursor = stack->head;
+	while (cursor->next != NULL)
+	{
+		if (cursor->value < value && (value == target || cursor->value > target))
+			target = cursor->value;
+		cursor = cursor->next;
+	}
+	return (target);
 }
 
 //Scorre tutto lo stack, se esiste qualocosa prima, se e minore e ordinato
@@ -76,7 +93,7 @@ int	get_position(t_stack *stack, t_stack_node *node)
 // se la dimensione e' <2
 //potrebbe essere necessario cambiare il tipo di dato in futuro
 // visto che le mosse potrebbero essere <MAX_INT
-
+// questo metodo è un affronto a dio non dovrebbe esistere
 int	get_insertion_cost(t_stack *b, int value)
 {
 	int	cost;
@@ -124,6 +141,8 @@ int	get_selection_cost(t_stack *a, t_stack_node *node)
 	return (get_insertion_cost(a, target));
 }
 
+
+
 void	get_sorting_costs(t_stack *a, t_stack *b, t_stack *cost_a, t_stack *cost_b)
 {
 	int cost;
@@ -136,21 +155,4 @@ void	get_sorting_costs(t_stack *a, t_stack *b, t_stack *cost_a, t_stack *cost_b)
 		ft_push_tail(cost_b, get_insertion_cost(b, node->value));
 		node = node->next;
 	}
-}
-
-//value should not be present
-int	greatest_smaller_than(t_stack *stack, int value)
-{
-	t_stack_node	*cursor;
-	int				target;
-
-	target = value;
-	cursor = stack->head;
-	while (cursor->next != NULL)
-	{
-		if (cursor->value < value && (value == target || cursor->value > target))
-			target = cursor->value;
-		cursor = cursor->next;
-	}
-	return (target);
 }

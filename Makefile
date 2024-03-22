@@ -39,7 +39,7 @@ test: all
 	 ./$(NAME) 2 1 3
 
 val: all
-	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 1 2 3 4 5 -1 -2 -3 0 111
+	 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) 2 1 3
 
 normi:
 	norminette $(SRC)
